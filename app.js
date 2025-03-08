@@ -11,7 +11,7 @@ async function fetchMovieRating(movieName) {
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
     const rating = $('meta[name="twitter:data2"]').attr("content");
-    return rating || "Rating not found";
+    return parseFloat(rating) || "Rating not found";
   } catch (error) {
     console.error("Error fetching data:", error);
     return "Error fetching data";
